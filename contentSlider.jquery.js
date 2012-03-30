@@ -191,9 +191,16 @@
         DoMiscSetup: function(){
             var instance = this;
 
+            // we watch for mouseover on the main container
             instance.$el
                 .mouseover(function(){instance.bool_mouse_is_over = true;})
                 .mouseout(function(){instance.bool_mouse_is_over = false;});
+
+            // Make the slideshow stop, if the current tab is inactive.
+            $(window)
+                .blur(function(){ instance.StopShow(); })
+                .focus(function(){ instance.StartShow(); });
+
         }, // DoMiscSetup()
 
         StartShow: function(delay){
@@ -227,7 +234,7 @@
         Rotate: function(){
             var instance = this;
 
-            if(instance.bool_mouse_is_over){
+            if(instance.options['pause-on-mouseover'] && instance.bool_mouse_is_over){
                 setTimeout(function(){ instance.Rotate(); }, 1500);
             } else {
                 var $el = $(instance.element);
@@ -305,4 +312,5 @@
     			instance[options].apply(instance, args));
     	});
     }
+
 })(jQuery, window, document);
