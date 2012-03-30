@@ -39,7 +39,7 @@
     *display: block;
     *float: left;
 }
-.contentSlider-control-bar .contentSlider-control-link {
+.contentSlider-control-bar .contentSlider-control-link.active {
     background-position: 0 -20px;
 }
 

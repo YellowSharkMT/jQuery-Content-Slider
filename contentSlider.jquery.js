@@ -1,7 +1,7 @@
 ;(function ( $, window, document, undefined ) {
     var pluginName = 'contentSlider';
     var defaults = {
-        'display-time':5000,
+        'display-time':4000,
         'transition-time':600,
         'pause-on-mouseover':true,
 
