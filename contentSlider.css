@@ -1,0 +1,35 @@
+.contentSlider-container{}
+
+.contentSlider-slide{}
+.contentSlider-slide.active{}
+
+.contentSlider-control-bar{ /* this is a UL element */}
+.contentSlider-control-item{ /* this is an LI element, contained inside .contentSlider-control-item */ }
+.contentSlider-control-link{ /* this is an anchor element, contained in side .contentSlider-control-item */ }
+
+.contentSlider-control-bar{
+    position: absolute;
+    width:auto;
+    height:auto;
+}
+
+.contentSlider-control-bar .contentSlider-control-item{
+    float:left;
+}
+
+.contentSlider-control-bar .contentSlider-control-link {
+    background-image: url('images/indicator-sprite-20x40.png');
+    background-position: 0 0;
+    display: inline-block;
+    height: 20px;
+    margin: 0 0 0 4px;
+    padding: 0;
+    text-indent: -9999em;
+    width: 20px;
+    *display: block;
+    *float: left;
+}
+.contentSlider-control-bar .contentSlider-control-link {
+    background-position: 0 -20px;
+}
+
