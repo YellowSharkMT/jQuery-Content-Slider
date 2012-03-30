@@ -1,18 +1,28 @@
 .contentSlider-container{}
 
-.contentSlider-slide{}
+.contentSlider-slide{
+	margin:0 auto;
+}
 .contentSlider-slide.active{}
+.contentSlider-slide img{
+	background-color:#fff;
+}
 
 .contentSlider-control-bar{ /* this is a UL element */}
 .contentSlider-control-item{ /* this is an LI element, contained inside .contentSlider-control-item */ }
 .contentSlider-control-link{ /* this is an anchor element, contained in side .contentSlider-control-item */ }
 
+.contentSlider-control-bar,
+.contentSlider-control-item{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
 .contentSlider-control-bar{
     position: absolute;
     width:auto;
     height:auto;
 }
-
 .contentSlider-control-bar .contentSlider-control-item{
     float:left;
 }
