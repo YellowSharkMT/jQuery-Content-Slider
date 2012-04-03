@@ -45,16 +45,18 @@
 
         // Class Methods
         init:function () {
-            // gather the elements
+            // gather the elements (hide ALL the slides, unhide the 1st one in ApplyCSS)
             this.$el = $(this.element);
             this.$slides = this.$el.children('div')
                 .hide();
 
             this.ApplyCSS();
-            this.AttachControlBar();
-            this.DoMiscSetup();
-            this.StartShow(this.options['display-time']);
 
+            if(this.$slides.length > 1){
+                this.AttachControlBar();
+                this.DoMiscSetup();
+                this.StartShow(this.options['display-time']);
+            }
             return this;
         }, // init()
 
@@ -232,17 +234,20 @@
         }, // SlideShow()
 
         Rotate: function(){
-            var instance = this;
+            var instance = this,
+                bool_observe_mouseover = instance.options['pause-on-mouseover'],
+                bool_mouseover_detected = instance.bool_mouse_is_over,
+                bool_pause_show = bool_observe_mouseover && bool_mouseover_detected;
 
-            if(instance.options['pause-on-mouseover'] && instance.bool_mouse_is_over){
-                setTimeout(function(){ instance.Rotate(); }, 1500);
+            if(bool_pause_show){
+                instance.StopShow(); // stop the show, then re-poll every .75s, to see if we can start it up again
+                setTimeout(function(){ instance.StartShow(instance.options['display-time']); }, 750);
             } else {
-                var $el = $(instance.element);
                 //do transition
-                var $active = $el.find('div.active');
-                var next_selector = 'div.'+instance.options['slide-class'];
+                var $active = instance.$el.find('div.active');
+                var next_selector = 'div.' + instance.options['slide-class'];
                 var $next = $active.next(next_selector);
-                if (!$next.length){ $next = $el.find('div:first'); }
+                if (!$next.length){ $next = instance.$el.find('div:first'); }
 
                 var index_to_activate = ($next.index() + 1);
                 instance.ActivateSlide(index_to_activate);
