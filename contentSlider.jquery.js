@@ -126,6 +126,7 @@
                     $new_link
                         .text(i + 1)
                         .click(function(){
+                            $new_link.blur(); // IE7 fix for "link borders"
                             instance
                                 .StopShow()
                                 //.SlideShow()
